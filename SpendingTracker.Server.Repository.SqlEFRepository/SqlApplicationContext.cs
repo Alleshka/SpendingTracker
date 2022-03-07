@@ -1,18 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SpendingTracker.Model;
+using SpendingTracker.Model.DomainObjects;
 
-namespace SpendingTracker.Server
+namespace SpendingTracker.Server.Repository
 {
-    public class ApplicationContext : DbContext
+    public class SqlApplicationContext : DbContext
     {
         public DbSet<SystemUser> Users { get; set; }
         public DbSet<Spending> Spendings { get; set; }
         public DbSet<SpendingGroup> SpendingGroups { get; set; }
 
-        public ApplicationContext(DbContextOptions options) : base(options)
+        public SqlApplicationContext(DbContextOptions options) : base(options)
         {
             // TODO: Only for test
             Database.EnsureDeleted();
+
             Database.EnsureCreated();
         }
 
@@ -34,6 +35,10 @@ namespace SpendingTracker.Server
                 .HasOne(x => x.User)
                 .WithMany(x => x.Spendings)
                 .HasForeignKey(x => x.UserId);
+
+            modelBuilder.Entity<SpendingCategory>()
+                .HasMany(x => x.Spendings)
+                .WithMany(x => x.Categories);
         }
     }
 }

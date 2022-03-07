@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpendingTracker.Model.DomainObjects;
+using System;
 
 namespace SpendingTracker.Model.DTO
 {

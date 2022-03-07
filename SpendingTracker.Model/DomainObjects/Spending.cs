@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SpendingTracker.Model
+namespace SpendingTracker.Model.DomainObjects
 {
     /// <summary>
     /// Класс затрат

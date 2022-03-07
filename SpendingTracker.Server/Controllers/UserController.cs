@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SpendingTracker.Model;
 using SpendingTracker.Model.DTO;
+using SpendingTracker.Server.Repository;
+using SpendingTracker.Server.Repository.SqlEFRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,24 +15,25 @@ namespace SpendingTracker.Server.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private ApplicationContext db;
-        public UserController(ApplicationContext context)
+        private IUserRepository _userRepository;
+        public UserController(IUserRepository userRepository)
         {
-            db = context;
+            _userRepository = userRepository;
         }
 
         // GET api/user
         [HttpGet]
         public async Task<IEnumerable<SystemUserInfo>> Get()
         {
-            return await db.Users.Select(x => new SystemUserInfo(x)).ToListAsync();
+            var res = await _userRepository.GetObjectsAsync();
+            return res.Select(x => new SystemUserInfo(x));
         }
 
         // GET api/user/89711b9a-cb37-4e76-8882-f73272b124fe
         [HttpGet("{id}")]
-        public async Task<ActionResult<SystemUser>> Get(Guid id)
+        public async Task<ActionResult<SystemUserInfo>> Get(Guid id)
         {
-            var user = await db.Users.FirstOrDefaultAsync(x => x.ObjectID == id);
+            var user = await _userRepository.GetObjectByIDAsync(id);
             if (user == null)
                 return NotFound();
             return new ObjectResult(new SystemUserInfo(user));

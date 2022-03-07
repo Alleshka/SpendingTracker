@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SpendingTracker.Model.DomainObjects;
+using System;
 using System.Collections.Generic;
 
-namespace SpendingTracker.Model
+namespace SpendingTracker.Model.DomainObjects
 {
     /// <summary>
     /// Группа трат
@@ -33,5 +34,10 @@ namespace SpendingTracker.Model
         /// Затраты внутри группы
         /// </summary>
         public IEnumerable<Spending> Spendings { get; set; }
+
+        /// <summary>
+        /// Категории
+        /// </summary>
+        public IEnumerable<SpendingCategory> Categories { get; set; }
     }
 }

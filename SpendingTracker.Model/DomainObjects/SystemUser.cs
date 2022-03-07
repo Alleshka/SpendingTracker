@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SpendingTracker.Model
+namespace SpendingTracker.Model.DomainObjects
 {
     /// <summary>
     /// Пользователь системы

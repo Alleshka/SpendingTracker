@@ -2,14 +2,12 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>4b69d864-53db-48d7-8d22-53a9ef9e4cc8</UserSecretsId>
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SpendingTracker.Model\SpendingTracker.Model.csproj" />
+    <ProjectReference Include="..\SpendingTracker.Server.Repository.SqlEFRepository\SpendingTracker.Server.Repository.SqlEFRepository.csproj" />
   </ItemGroup>
 
 </Project>

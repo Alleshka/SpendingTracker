@@ -5,11 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
+using SpendingTracker.Server.Repository;
+using SpendingTracker.Server.Repository.SqlEFRepository;
 
 namespace SpendingTracker.Server
 {
@@ -30,7 +27,8 @@ namespace SpendingTracker.Server
             services.AddControllers();
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
+            services.AddDbContext<SqlApplicationContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
+            services.AddSingleton<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
