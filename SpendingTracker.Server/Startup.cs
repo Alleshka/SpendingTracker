@@ -28,7 +28,7 @@ namespace SpendingTracker.Server
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SqlApplicationContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
-            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IUserRepository, SqlEFUserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

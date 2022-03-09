@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SpendingTracker.Model;
 using SpendingTracker.Model.DTO;
 using SpendingTracker.Server.Repository;
-using SpendingTracker.Server.Repository.SqlEFRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +22,7 @@ namespace SpendingTracker.Server.Controllers
         [HttpGet]
         public async Task<IEnumerable<SystemUserInfo>> Get()
         {
-            var res = await _userRepository.GetObjectsAsync();
+            var res = await _userRepository.GetAllAsync();
             return res.Select(x => new SystemUserInfo(x));
         }
 
