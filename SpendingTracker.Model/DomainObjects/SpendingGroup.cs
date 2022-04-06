@@ -1,6 +1,6 @@
-﻿using SpendingTracker.Model.DomainObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace SpendingTracker.Model.DomainObjects
 {
@@ -9,6 +9,16 @@ namespace SpendingTracker.Model.DomainObjects
     /// </summary>
     public class SpendingGroup : BaseModel
     {
+        public SpendingGroup() : base ()
+        {
+
+        }
+
+        public SpendingGroup(Guid objectID) : base (objectID)
+        {
+
+        }
+
         /// <summary>
         /// Дата создания группы
         /// </summary>
@@ -23,21 +33,24 @@ namespace SpendingTracker.Model.DomainObjects
         /// Наименование группы
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
-        /// Связь с владельцем группы
+        /// Владелец группы
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid UserID { get; set; }
+
+        [JsonIgnore]
         public SystemUser User { get; set; }
 
         /// <summary>
         /// Затраты внутри группы
         /// </summary>
-        public IEnumerable<Spending> Spendings { get; set; }
+        public ICollection<Spending> Spendings { get; set; } = new List<Spending>();
 
+        [JsonIgnore]
         /// <summary>
         /// Категории
         /// </summary>
-        public IEnumerable<SpendingCategory> Categories { get; set; }
+        public ICollection<SpendingCategory> Categories { get; set; } = new List<SpendingCategory>();
     }
 }

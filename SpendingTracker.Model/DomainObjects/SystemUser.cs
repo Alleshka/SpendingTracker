@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SpendingTracker.Model.DomainObjects
 {
@@ -7,14 +8,13 @@ namespace SpendingTracker.Model.DomainObjects
     /// Пользователь системы
     /// </summary>
     public class SystemUser : BaseModel
-    {    
-
+    {
         public SystemUser() : base()
         {
 
         }
 
-        public SystemUser(Guid guid) : base(guid)
+        public SystemUser(Guid objectID) : base(objectID)
         {
 
         }
@@ -22,16 +22,23 @@ namespace SpendingTracker.Model.DomainObjects
         /// <summary>
         /// Логин пользователя для входа в систему
         /// </summary>
+        [Required]
         public string Login { get; set; }
-        
+
         /// <summary>
         /// Пароль пользователя для входа в систему
         /// </summary>
+        [Required]
         public string Password { get; set; }
 
         /// <summary>
         /// Все траты пользователя
         /// </summary>
-        public IEnumerable<SpendingGroup> Spendings { get; protected set; } = new List<SpendingGroup>();
+        public ICollection<SpendingGroup> Spendings { get; protected set; } = new List<SpendingGroup>();
+
+        /// <summary>
+        /// Категории пользователя
+        /// </summary>
+        public ICollection<SpendingCategory> Categories { get; protected set; } = new List<SpendingCategory>();
     }
 }

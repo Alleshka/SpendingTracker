@@ -1,14 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpendingTracker.Model.DomainObjects
 {
-    public abstract class BaseModel
+    public abstract class BaseModel 
     {
         [Key]
+        [Required]
         public Guid ObjectID { get; protected set; }
 
-        public BaseModel() : this(Guid.NewGuid())
+        protected BaseModel() : this(Guid.NewGuid())
         {
 
         }

@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpendingTracker.Server.Repository.SqlEFRepository\SpendingTracker.Server.Repository.SqlEFRepository.csproj" />
-    <ProjectReference Include="..\SpendingTracker.Server.Repository\SpendingTracker.Server.Repository.csproj" />
+    <ProjectReference Include="..\SpendingTracker.Model\SpendingTracker.Model.csproj" />
+    <ProjectReference Include="..\SpendingTracker.Server\SpendingTracker.Server.csproj" />
   </ItemGroup>
 
 </Project>
